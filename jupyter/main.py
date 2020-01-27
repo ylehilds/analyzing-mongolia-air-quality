@@ -17,7 +17,7 @@ logging.basicConfig(level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 
 # Need to ssh tunnel for this to work
-# ssh -L nothing:nothing:nothing aq.byu.edu -N
+# ssh -L 8086:localhost:8086 aq.byu.edu -N
 influx = DataFrameClient(
     host=secrets.HOST,
     port=secrets.PORT,
