@@ -77,6 +77,7 @@ LOGGER.info("Done loading data...")
 # https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
 # https://stackoverflow.com/questions/18172851/deleting-dataframe-row-in-pandas-based-on-column-value
 data = data[data.voltage > 0]
+data = data[data.location_name == 'Mongolia']
 
 print(data)
 
