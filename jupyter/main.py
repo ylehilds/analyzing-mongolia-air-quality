@@ -79,6 +79,15 @@ LOGGER.info("Done loading data...")
 data = data[data.voltage > 0]
 data = data[data.location_name == 'Mongolia']
 
+monday = data[data.index.day_name() == 'Monday']['pm2_5']
+tuesday = data[data.index.day_name() == 'Tuesday']['pm2_5']
+wednesday = data[data.index.day_name() == 'Wednesday']['pm2_5']
+thursday = data[data.index.day_name() == 'Thursday']['pm2_5']
+friday = data[data.index.day_name() == 'Friday']['pm2_5']
+saturday = data[data.index.day_name() == 'Saturday']['pm2_5']
+sunday = data[data.index.day_name() == 'Sunday']['pm2_5']
+all_days = [monday, tuesday, wednesday, thursday, friday, saturday, sunday]
+
 print(data)
 
 # https://pythonspot.com/matplotlib-histogram/
