@@ -79,7 +79,13 @@ LOGGER.info("Done loading data...")
 data = data[data.voltage > 0]
 data = data[data.location_name == 'Mongolia']
 
-monday = data[(data.index.day_name() == 'Monday')].between_time('0:15', '0:45')['pm2_5']
+print(data.index[1])
+# data = data.tz_convert(None)
+# data.index = data.index.tz_localize('GMT')
+data.index = data.index.tz_convert('Asia/Ulaanbaatar')
+print(data.index[1])
+
+monday = data[(data.index.day_name() == 'Monday')].between_time('15:00:00', '01:00:00')
 tuesday = data[data.index.day_name() == 'Tuesday']['pm2_5']
 wednesday = data[data.index.day_name() == 'Wednesday']['pm2_5']
 thursday = data[data.index.day_name() == 'Thursday']['pm2_5']
