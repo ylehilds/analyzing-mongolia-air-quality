@@ -79,6 +79,30 @@ LOGGER.info("Done loading data...")
 data = data[data.voltage > 0]
 data = data[data.location_name == 'Mongolia']
 
+days_of_week = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+# for testing ...
+for day in days_of_week:
+    plt.xlabel('Sensors for {0}'.format(day))
+    plt.ylabel('PM 2.5 Value')
+    plt.title('Week PM 2.5 for sensors for {0}'.format(day))
+    plt.grid(True)
+    sensors_data = list()
+    sensors_name = list()
+    temp = data[data.index.day_name() == day]
+    # temp = temp.groupby("name")
+    for name, sensor_data in temp.groupby("name"):
+        sensors_name.append(name)
+        sensors_data.append(temp.groupby("name").get_group(name)["pm2_5"].between_time('01:01', '07:59').to_numpy().tolist())
+
+    results = plt.boxplot(sensors_data, showfliers=False, labels=sensors_name, showmeans=True, meanline=True)
+    print('whiskers: ', [item.get_ydata()[1] for item in results['whiskers']])
+    print('caps: ', [item.get_ydata()[1] for item in results['caps']])
+    print('boxes: ', [item.get_ydata()[1] for item in results['boxes']])
+    print('medians: ', [item.get_ydata()[1] for item in results['medians']])
+    print('means: ', [item.get_ydata()[1] for item in results['means']])
+    print('fliers: ', [item.get_ydata()[1] for item in results['fliers']])
+    plt.show()
+
 monday = data[data.index.day_name() == 'Monday']['pm2_5']
 tuesday = data[data.index.day_name() == 'Tuesday']['pm2_5']
 wednesday = data[data.index.day_name() == 'Wednesday']['pm2_5']
