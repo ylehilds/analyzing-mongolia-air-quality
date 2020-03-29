@@ -74,6 +74,7 @@ def load_data(filename):
 data = load_data("aq_data.h5")
 LOGGER.info("Done loading data...")
 
+'''
 # https://stackoverflow.com/questions/16476924/how-to-iterate-over-rows-in-a-dataframe-in-pandas
 # https://stackoverflow.com/questions/18172851/deleting-dataframe-row-in-pandas-based-on-column-value
 data = data[data.voltage > 0]
@@ -142,3 +143,4 @@ plt.show()
 # # Tweak spacing to prevent clipping of ylabel
 # plt.subplots_adjust(left=0.15)
 # plt.show()
+'''
